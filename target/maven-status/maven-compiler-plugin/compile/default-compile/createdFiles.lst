@@ -1,1 +1,5 @@
 ru\kuznetcov\oleg\App.class
+ru\kuznetcov\oleg\AbstractDAO.class
+ru\kuznetcov\oleg\Test.class
+ru\kuznetcov\oleg\TestDAO.class
+ru\kuznetcov\oleg\ConnectorDB.class
