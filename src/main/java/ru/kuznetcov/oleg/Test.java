@@ -9,6 +9,14 @@ public class Test {
 		this.id = id;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public String getStr() {
+		return str;
+	}
+	
 	@Override
 	public String toString() {
 		return "Id = " + id + ", str = " + str + ".";

@@ -13,8 +13,12 @@ public class TestDAO implements AbstractDAO<Integer, Test> {
 		"SELECT * FROM Test_table";
 	private static String SQL_SELECT_USER_ID = 
 		"SELECT * FROM Test_table WHERE Id = ?";
+	private static String SQL_INSERT_TEST =
+		"INSERT INTO Test_table(Id, Str) VALUES(?, ?)";
+	private static String SQL_DELETE_TEST =
+		"DELETE FROM Test_table WHERE Id = ?";
 
-	public List<Test> findALL() {
+	public List<Test> findAll() {
 		List<Test> tests = new ArrayList<>();
 		try (Connection connection = ConnectorDB.getConnection();
 			Statement statement = connection.createStatement()) {
@@ -48,7 +52,16 @@ public class TestDAO implements AbstractDAO<Integer, Test> {
 	}
 
 	public boolean delete(Integer id) {
-		throw new UnsupportedOperationException();
+		boolean rs = false; 
+		try (Connection connection = ConnectorDB.getConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL_DELETE_TEST)) {
+
+			statement.setInt(1, id);
+			rs = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public boolean delete(Test entity) {
@@ -56,7 +69,17 @@ public class TestDAO implements AbstractDAO<Integer, Test> {
 	}
 
 	public boolean create(Test entity) {
-		throw new UnsupportedOperationException();
+		boolean rs = false;
+		try (Connection connection = ConnectorDB.getConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL_INSERT_TEST)) {
+
+			statement.setInt(1, entity.getId());
+			statement.setString(2, entity.getStr());
+			rs = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public Test update(Test entity) {

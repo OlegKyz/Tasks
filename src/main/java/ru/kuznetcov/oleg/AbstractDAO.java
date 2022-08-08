@@ -3,7 +3,7 @@ package ru.kuznetcov.oleg;
 import java.util.List;
 
 public interface AbstractDAO<K extends Number, T> {
-	public List<T> findALL();
+	public List<T> findAll();
 
 	public T findEntityById(K id);
 
