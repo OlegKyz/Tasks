@@ -21,7 +21,7 @@ public class App
     	//System.out.println(System.getProperty("java.class.path"));
         //testRun();
         initDataBase();
-        MainWindow mainWindow = new MainWindow();
+        MainTestWindow mainWindow = new MainTestWindow();
         mainWindow.setVisible(true);
     }
 
@@ -61,7 +61,7 @@ public class App
     }
 }
 
-class MainWindow extends JFrame {
+class MainTestWindow extends JFrame {
 	private JButton showAllButton;
 	private JButton addEntityButton;
 	private JButton deleteByIdButton;
@@ -70,7 +70,7 @@ class MainWindow extends JFrame {
 	private JTextField strText;
 	private JTextArea outArea;
 
-	public MainWindow() {
+	public MainTestWindow() {
 		showAllButton = new JButton("Show All");
 		addEntityButton = new JButton("Add entity");
 		deleteByIdButton = new JButton("Delete by id");
