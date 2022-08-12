@@ -21,7 +21,7 @@ public class App
     	//System.out.println(System.getProperty("java.class.path"));
         //testRun();
         initDataBase();
-        MainTestWindow mainWindow = new MainTestWindow();
+        MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
     }
 

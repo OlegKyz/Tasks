@@ -16,6 +16,6 @@ public class ConnectorDB {
 	}
 
 	public static Connection getConnection(String DBName) throws SQLException {
-		return DriverManager.getConnection(connectionString + DBName, login, password);
+		return DriverManager.getConnection(connectionStringWithoutDB + DBName, login, password);
 	}
 }

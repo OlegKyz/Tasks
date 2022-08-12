@@ -6,6 +6,12 @@ CREATE TABLE Tasks
 	Description VARCHAR(200)
 );
 
+ALTER TABLE Tasks
+ADD Name VARCHAR(100);
+
+UPDATE Tasks
+SET Name = Description;
+
 CREATE TABLE Subtasks
 (
 	Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,6 +21,12 @@ CREATE TABLE Subtasks
 	Finish_result INT,
 	FOREIGN KEY (Main_task_id) REFERENCES Tasks (id) ON DELETE CASCADE
 );
+
+ALTER TABLE Subtasks
+ADD Name VARCHAR(100);
+
+UPDATE Subtasks
+SET Name = Description;
 
 INSERT INTO Tasks(Description)
 VALUES

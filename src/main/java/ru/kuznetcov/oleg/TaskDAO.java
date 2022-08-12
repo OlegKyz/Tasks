@@ -22,8 +22,9 @@ public class TaskDAO implements AbstractDAO<Integer, Task> {
 			ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_TASKS);
 			while (rs.next()) {
 				int id = rs.getInt("Id");
+				String name = rs.getString("Name");
 				String description = rs.getString("Description");
-				tasks.add(new Task(id, description));
+				tasks.add(new Task(id, name, description));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

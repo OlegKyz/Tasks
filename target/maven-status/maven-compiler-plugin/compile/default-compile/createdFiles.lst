@@ -1,3 +1,4 @@
+ru\kuznetcov\oleg\MainWindow$1.class
 ru\kuznetcov\oleg\TaskDAO.class
 ru\kuznetcov\oleg\SubtaskDAO.class
 ru\kuznetcov\oleg\Subtask.class
@@ -5,7 +6,9 @@ ru\kuznetcov\oleg\MainTestWindow.class
 ru\kuznetcov\oleg\Test.class
 ru\kuznetcov\oleg\ConnectorDB.class
 ru\kuznetcov\oleg\App.class
+ru\kuznetcov\oleg\TaskPanel.class
 ru\kuznetcov\oleg\AbstractDAO.class
 ru\kuznetcov\oleg\MainTestWindow$1.class
 ru\kuznetcov\oleg\TestDAO.class
 ru\kuznetcov\oleg\Task.class
+ru\kuznetcov\oleg\MainWindow.class
