@@ -7,7 +7,12 @@ import java.util.List;
 
 public class MainWindow extends JFrame {
 
+	private JPanel mainPanel;
 	private JPanel tasksPanel;
+	private JPanel buttonsPanel;
+	private JButton addButton;
+
+	private JFrame addTaskFrame = null;
 
 	public MainWindow() {
 		List<Task> tasks = new TaskDAO().findAll();
@@ -19,8 +24,24 @@ public class MainWindow extends JFrame {
 			tasksPanel.add(new TaskPanel(task, null));
 		}
 
-		add(tasksPanel);
+		buttonsPanel = new JPanel();
+		addButton = new JButton("Add");
+		buttonsPanel.add(addButton);
+
+		mainPanel = new JPanel();
+		mainPanel.add(tasksPanel);
+		mainPanel.add(buttonsPanel);
+		add(mainPanel);
 		pack();
+
+		addButton.addActionListener(event -> {
+			if (addTaskFrame == null) {
+				addTaskFrame = new JFrame();
+				addTaskFrame.add(Task.getTaskAddPanel(tasksPanel));
+				addTaskFrame.pack();
+			}
+			addTaskFrame.setVisible(true);
+		});
 
 		addWindowListener(new WindowAdapter() {
 			@Override
