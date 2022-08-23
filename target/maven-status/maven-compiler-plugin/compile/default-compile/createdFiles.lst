@@ -8,8 +8,8 @@ ru\kuznetcov\oleg\ConnectorDB.class
 ru\kuznetcov\oleg\App.class
 ru\kuznetcov\oleg\TaskPanel.class
 ru\kuznetcov\oleg\AbstractDAO.class
+ru\kuznetcov\oleg\NewTaskWindow.class
 ru\kuznetcov\oleg\MainTestWindow$1.class
 ru\kuznetcov\oleg\TestDAO.class
 ru\kuznetcov\oleg\Task.class
 ru\kuznetcov\oleg\MainWindow.class
-ru\kuznetcov\oleg\Task$1.class

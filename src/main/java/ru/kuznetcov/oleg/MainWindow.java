@@ -36,9 +36,7 @@ public class MainWindow extends JFrame {
 
 		addButton.addActionListener(event -> {
 			if (addTaskFrame == null) {
-				addTaskFrame = new JFrame();
-				addTaskFrame.add(Task.getTaskAddPanel(tasksPanel));
-				addTaskFrame.pack();
+				addTaskFrame = new NewTaskWindow(this);
 			}
 			addTaskFrame.setVisible(true);
 		});
@@ -49,5 +47,9 @@ public class MainWindow extends JFrame {
 				System.exit(0);
 			}
 		});
+	}
+
+	JPanel getTasksPanel() {
+		return tasksPanel;
 	}
 }
