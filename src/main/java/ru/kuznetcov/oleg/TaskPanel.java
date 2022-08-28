@@ -11,6 +11,7 @@ public class TaskPanel extends JPanel {
 	private JLabel description;
 	private JLabel progress;
 	private JButton showDetails;
+	private SubtasksShowWindow subtasksWindow;
 
 	public TaskPanel(Task task, List<Subtask> subtasks) {
 		taskName = new JLabel(task.getName());
@@ -22,5 +23,12 @@ public class TaskPanel extends JPanel {
 		add(description);
 		add(progress);
 		add(showDetails);
+
+		showDetails.addActionListener(event -> {
+			if (subtasksWindow == null) {
+				subtasksWindow = new SubtasksShowWindow(subtasks);
+			}
+			subtasksWindow.setVisible(true);
+		});
 	}
 }

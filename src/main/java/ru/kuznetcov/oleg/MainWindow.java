@@ -21,7 +21,8 @@ public class MainWindow extends JFrame {
 		tasksPanel.setLayout(new GridLayout(0, 1));
 
 		for (Task task : tasks) {
-			tasksPanel.add(new TaskPanel(task, null));
+			List<Subtask> subtasks = new SubtaskDAO().findByMainTaskId(task.getId());
+			tasksPanel.add(new TaskPanel(task, subtasks));
 		}
 
 		buttonsPanel = new JPanel();

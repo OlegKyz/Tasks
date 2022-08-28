@@ -14,6 +14,8 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 		"SELECT * FROM Subtasks";
 	private final String SQL_SELECT_SUBTASK_ID =
 		"SELECT * FROM Subtasks WHERE Id = ?";
+	private final String SQL_SELECT_MAIN_TASK_ID =
+		"SELECT * FROM Subtasks WHERE Main_task_id = ?";
 
 	public List<Subtask> findAll() {
 		List<Subtask> subtasks = new ArrayList<>();
@@ -27,6 +29,28 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 				int currentResult = rs.getInt("Current_result");
 				int finishResult = rs.getInt("Finish_result");
 				subtasks.add(new Subtask(id, mainTaskId, description,
+						currentResult, finishResult));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return subtasks;
+	}
+
+	public List<Subtask> findByMainTaskId(Integer mainTaskId) {
+		List<Subtask> subtasks = new ArrayList<>();
+		try (Connection connection = ConnectorDB.getConnection(DBName);
+			PreparedStatement statement = connection.prepareStatement(SQL_SELECT_MAIN_TASK_ID)) {
+
+			statement.setInt(1, mainTaskId);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("Id");
+				int bufMainTaskId = rs.getInt("Main_task_id");
+				String description = rs.getString("Description");
+				int currentResult = rs.getInt("Current_result");
+				int finishResult = rs.getInt("Finish_result");
+				subtasks.add(new Subtask(id, bufMainTaskId, description,
 						currentResult, finishResult));
 			}
 		} catch (SQLException e) {
