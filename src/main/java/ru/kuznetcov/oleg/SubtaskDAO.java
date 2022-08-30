@@ -16,6 +16,8 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 		"SELECT * FROM Subtasks WHERE Id = ?";
 	private final String SQL_SELECT_MAIN_TASK_ID =
 		"SELECT * FROM Subtasks WHERE Main_task_id = ?";
+	private final String SQL_INSERT_SUBTASK =
+		"INSERT INTO Subtask(Main_task_id, Name, Description, Current_result, Finish_result) VALUES(?, ?, ?, ?, ?)";
 
 	public List<Subtask> findAll() {
 		List<Subtask> subtasks = new ArrayList<>();
@@ -26,9 +28,10 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 				int id = rs.getInt("Id");
 				int mainTaskId = rs.getInt("Main_task_id");
 				String description = rs.getString("Description");
+				String name = rs.getString("Name");
 				int currentResult = rs.getInt("Current_result");
 				int finishResult = rs.getInt("Finish_result");
-				subtasks.add(new Subtask(id, mainTaskId, description,
+				subtasks.add(new Subtask(id, mainTaskId, name, description,
 						currentResult, finishResult));
 			}
 		} catch (SQLException e) {
@@ -47,10 +50,11 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 			while (rs.next()) {
 				int id = rs.getInt("Id");
 				int bufMainTaskId = rs.getInt("Main_task_id");
+				String name = rs.getString("Name");
 				String description = rs.getString("Description");
 				int currentResult = rs.getInt("Current_result");
 				int finishResult = rs.getInt("Finish_result");
-				subtasks.add(new Subtask(id, bufMainTaskId, description,
+				subtasks.add(new Subtask(id, bufMainTaskId, name, description,
 						currentResult, finishResult));
 			}
 		} catch (SQLException e) {
@@ -72,7 +76,20 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 	}
 
 	public boolean create(Subtask entity) {
-		throw new UnsupportedOperationException();
+		boolean rs = false;
+		try (Connection connection = ConnectorDB.getConnection(DBName);
+			PreparedStatement statement = connection.prepareStatement(SQL_INSERT_SUBTASK)) {
+
+			statement.setInt(1, entity.getMainTaskId());
+			statement.setString(2, entity.getName());
+			statement.setString(3, entity.getDescription());
+			statement.setInt(4, entity.getCurrentResult());
+			statement.setInt(5, entity.getFinishResult());
+			rs = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public Subtask update(Subtask entity) {

@@ -26,7 +26,7 @@ public class TaskPanel extends JPanel {
 
 		showDetails.addActionListener(event -> {
 			if (subtasksWindow == null) {
-				subtasksWindow = new SubtasksShowWindow(subtasks);
+				subtasksWindow = new SubtasksShowWindow(subtasks, task.getId());
 			}
 			subtasksWindow.setVisible(true);
 		});

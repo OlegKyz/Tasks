@@ -6,12 +6,14 @@ public class Subtask {
 	private String description;
 	private int currentResult;
 	private int finishResult;
+	private String name;
 
-	public Subtask(int id, int mainTaskId, String description, 
+	public Subtask(int id, int mainTaskId, String name, String description, 
 		int currentResult, int finishResult) {
 
 		this.id = id;
 		this.mainTaskId = mainTaskId;
+		this.name = name;
 		this.description = description;
 		this.currentResult = currentResult;
 		this.finishResult = finishResult;
@@ -35,6 +37,10 @@ public class Subtask {
 
 	public int getFinishResult() {
 		return finishResult;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	@Override

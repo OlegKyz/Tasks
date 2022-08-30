@@ -1,5 +1,6 @@
 ru\kuznetcov\oleg\MainWindow$1.class
 ru\kuznetcov\oleg\TaskDAO.class
+ru\kuznetcov\oleg\SubtaskCreateWindow.class
 ru\kuznetcov\oleg\SubtaskDAO.class
 ru\kuznetcov\oleg\Subtask.class
 ru\kuznetcov\oleg\MainTestWindow.class
