@@ -17,7 +17,7 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 	private final String SQL_SELECT_MAIN_TASK_ID =
 		"SELECT * FROM Subtasks WHERE Main_task_id = ?";
 	private final String SQL_INSERT_SUBTASK =
-		"INSERT INTO Subtask(Main_task_id, Name, Description, Current_result, Finish_result) VALUES(?, ?, ?, ?, ?)";
+		"INSERT INTO Subtasks(Main_task_id, Name, Description, Current_result, Finish_result) VALUES(?, ?, ?, ?, ?)";
 
 	public List<Subtask> findAll() {
 		List<Subtask> subtasks = new ArrayList<>();
