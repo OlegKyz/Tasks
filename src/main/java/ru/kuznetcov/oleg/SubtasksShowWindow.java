@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class SubtasksShowWindow extends JFrame {
 	private JPanel mainPanel;
@@ -13,6 +14,7 @@ public class SubtasksShowWindow extends JFrame {
 	private JPanel subtasksPanel;
 	private SubtaskCreateWindow subtaskCreateWindow;
 	private int mainTaskId;
+	private List<SubtaskPanel> subtasksPanelList;
 
 	public SubtasksShowWindow(List<Subtask> subtasks, int mainTaskId) {
 		this.mainTaskId = mainTaskId;
@@ -20,8 +22,12 @@ public class SubtasksShowWindow extends JFrame {
 
 		subtasksPanel = new JPanel();
 		subtasksPanel.setLayout(new GridLayout(0, 1));
+
+		subtasksPanelList = new ArrayList<SubtaskPanel>();
 		for (Subtask subtask : subtasks) {
-			subtasksPanel.add(new SubtaskPanel(subtask));
+			SubtaskPanel buf = new SubtaskPanel(subtask);
+			subtasksPanel.add(buf);
+			subtasksPanelList.add(buf);
 		}
 		addButton = new JButton("Add");
 		deleteButton = new JButton("Delete");
@@ -39,6 +45,16 @@ public class SubtasksShowWindow extends JFrame {
 				subtaskCreateWindow = new SubtaskCreateWindow(this);
 			}
 			subtaskCreateWindow.setVisible(true);
+		});
+
+		deleteButton.addActionListener(event -> {
+			for (SubtaskPanel subtask : subtasksPanelList) {
+				if (subtask.isSelected() && !subtask.isDeleted()) {
+					subtask.setDeleted(true);
+					new SubtaskDAO().delete(subtask.getId());
+					subtasksPanel.remove(subtask);
+				}
+			}
 		});
 	}
 

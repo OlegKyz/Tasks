@@ -16,6 +16,8 @@ public class TaskDAO implements AbstractDAO<Integer, Task> {
 		"SELECT * FROM Tasks WHERE Id = ?";
 	private final String SQL_INSERT_TASK = 
 		"INSERT INTO Tasks(Name, Description) VALUES(?, ?)";
+	private final String SQL_DELETE_TASK_ID =
+		"DELETE FROM Tasks WHERE Id = ?";
 
 	public List<Task> findAll() {
 		List<Task> tasks = new ArrayList<>();
@@ -39,7 +41,16 @@ public class TaskDAO implements AbstractDAO<Integer, Task> {
 	}
 
 	public boolean delete(Integer id) {
-		throw new UnsupportedOperationException();
+		boolean rs = false;
+		try (Connection connection = ConnectorDB.getConnection(DBName);
+			PreparedStatement statement = connection.prepareStatement(SQL_DELETE_TASK_ID)) {
+
+			statement.setInt(1, id);
+			rs = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public boolean delete(Task entity) {

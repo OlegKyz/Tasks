@@ -18,6 +18,9 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 		"SELECT * FROM Subtasks WHERE Main_task_id = ?";
 	private final String SQL_INSERT_SUBTASK =
 		"INSERT INTO Subtasks(Main_task_id, Name, Description, Current_result, Finish_result) VALUES(?, ?, ?, ?, ?)";
+	private final String SQL_DELETE_SUBTASK_ID =
+		"DELETE FROM Subtasks WHERE Id = ?";	
+
 
 	public List<Subtask> findAll() {
 		List<Subtask> subtasks = new ArrayList<>();
@@ -68,7 +71,16 @@ public class SubtaskDAO implements AbstractDAO<Integer, Subtask> {
 	}
 
 	public boolean delete(Integer id) {
-		throw new UnsupportedOperationException();
+		boolean rs = false; 
+		try (Connection connection = ConnectorDB.getConnection(DBName);
+			PreparedStatement statement = connection.prepareStatement(SQL_DELETE_SUBTASK_ID)) {
+
+			statement.setInt(1, id);
+			rs = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public boolean delete(Subtask entity) {
