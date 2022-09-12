@@ -10,20 +10,35 @@ public class NewTaskWindow extends JFrame {
 	private JTextField nameField;
 	private JTextField descriptionField;
 	private JButton saveButton;
+	private JLabel jlName;
+	private JLabel jlDescription;
+
 	private JPanel mainPanel;
+	private JPanel buttonPanel;
+	private JPanel contentPanel;
 
 	public NewTaskWindow(MainWindow mainWindow) {
+		setLayout(new GridLayout(2, 1));
+
+		contentPanel = new JPanel();
+		contentPanel.setLayout(new GridLayout(0, 2));
+
 		nameField = new JTextField(20);
+		jlName = new JLabel("Name");
 		descriptionField = new JTextField(20);
+		jlDescription = new JLabel("Description");
 
+		contentPanel.add(jlName);
+		contentPanel.add(nameField);
+		contentPanel.add(jlDescription);
+		contentPanel.add(descriptionField);
+
+		buttonPanel = new JPanel();
 		saveButton = new JButton("Save");
+		buttonPanel.add(saveButton);
 
-		mainPanel = new JPanel();
-		mainPanel.add(nameField);
-		mainPanel.add(descriptionField);
-		mainPanel.add(saveButton);
-
-		add(mainPanel);
+		add(contentPanel);
+		add(buttonPanel);
 		pack();
 		
 		saveButton.addActionListener(event -> {

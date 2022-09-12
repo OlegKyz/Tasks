@@ -8,38 +8,37 @@ import java.util.List;
 public class SubtaskCreateWindow extends JFrame {
 
 	public SubtaskCreateWindow(SubtasksShowWindow parentWindow) {
-		JPanel mainPanel = new JPanel();
+		setLayout(new GridLayout(2, 1));
 
-		JPanel dataPanel = new JPanel();
-		dataPanel.setLayout(new GridLayout(0, 2));
+		JPanel contentPanel = new JPanel();
+		contentPanel.setLayout(new GridLayout(0, 2));
 
 		JLabel nameLabel = new JLabel("Name");
-		JTextField nameField = new JTextField();
-		dataPanel.add(nameLabel);
-		dataPanel.add(nameField);
+		JTextField nameField = new JTextField(20);
+		contentPanel.add(nameLabel);
+		contentPanel.add(nameField);
 
 		JLabel descriptionLabel = new JLabel("Description");
-		JTextField descriptionField = new JTextField();
-		dataPanel.add(descriptionLabel);
-		dataPanel.add(descriptionField);
+		JTextField descriptionField = new JTextField(20);
+		contentPanel.add(descriptionLabel);
+		contentPanel.add(descriptionField);
 
 		JLabel currentResultLabel = new JLabel("Current result");
-		JTextField currentResultField = new JTextField();
-		dataPanel.add(currentResultLabel);
-		dataPanel.add(currentResultField);
+		JTextField currentResultField = new JTextField(20);
+		contentPanel.add(currentResultLabel);
+		contentPanel.add(currentResultField);
 
 		JLabel finishResultLabel = new JLabel("Finish result");
-		JTextField finishResultField = new JTextField();
-		dataPanel.add(finishResultLabel);
-		dataPanel.add(finishResultField);
+		JTextField finishResultField = new JTextField(20);
+		contentPanel.add(finishResultLabel);
+		contentPanel.add(finishResultField);
 
 		JPanel buttonPanel = new JPanel();
 		JButton saveButton = new JButton("Save");
 		buttonPanel.add(saveButton);
 
-		mainPanel.add(dataPanel);
-		mainPanel.add(buttonPanel);
-		add(mainPanel);
+		add(contentPanel);
+		add(buttonPanel);
 		pack();
 
 		saveButton.addActionListener(event -> {

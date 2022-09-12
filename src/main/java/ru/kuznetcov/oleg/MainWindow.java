@@ -40,7 +40,7 @@ public class MainWindow extends JFrame {
 		mainPanel.add(tasksPanel);
 		mainPanel.add(buttonsPanel);
 		add(mainPanel);
-		pack();
+		setSize(500, 300);
 
 		addButton.addActionListener(event -> {
 			if (addTaskFrame == null) {
